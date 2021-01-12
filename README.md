@@ -20,7 +20,8 @@
 | Column                       | Type     | Options     |
 | -------                      | ------   | ----------- |
 | name                         | string   | null: false |
-| category_id                  | integer   | null: false |
+| explanation                  | text     | null: false |
+| category_id                  | integer  | null: false |
 | products_information_id      | integer  | null: false |
 | bo_shipping_charges_id       | integer  | null: false |
 | area_id                      | integer  | null: false |

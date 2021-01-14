@@ -5,16 +5,23 @@ RSpec.describe User, type: :model do
     @user = FactoryBot.build(:user)
   end
   describe "ユーザー新規登録" do
-    it "nicknameが空だと登録できない" do
-      @user.nickname = ""
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Nickname can't be blank")
+    context 'ユーザー新規登録ができる場合' do
     end
-    it "emailが空だと登録できない" do
-      @user.email = ""
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Email can't be blank")
-    end
+    
+    context 'ユーザー新規登録ができない場合' do
+      it "nicknameが空だと登録できない" do
+        @user.nickname = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Nickname can't be blank")
+      end
+      it "emailが空だと登録できない" do
+        @user.email = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email can't be blank")
+      end
+   
+    
+    
     it "first_name_kanaが空だと登録できない" do
       @user.first_name_kana= ""
       @user.valid?
@@ -72,6 +79,8 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
+    end
+
     it "emailが@を含むこと" do
       @user.email="1234gmail.com" 
       @user.valid?

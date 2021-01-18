@@ -12,15 +12,20 @@ extend ActiveHash::Associations::ActiveRecordExtensions
   validates :image
   validates :name
   validates :explanation
+  validates :price
+  validates :price,numericality:{
+    :greater_than_or_equal_to : 300,
+    :less_than_or_equal_to : 9999999}
+ end
+
+ with_options numericality:{other_than: 1} do
   validates :category_id
   validates :products_information_id
   validates :bo_shipping_charges_id
   validates :area_id
   validates :estimated_shopping_date_id
-  validates :price
-  validates :price,numericality:{
-    :greater_than_or_equal_to => 300,
-    :less_than_or_equal_to => 9999999}
  end
+
+ 
 
 end

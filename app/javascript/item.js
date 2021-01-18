@@ -2,7 +2,7 @@ window.addEventListener('load', () => {
   const priceInput = document.getElementById("item-price");
   priceInput.addEventListener("input", () => {
     const inputValue = priceInput.value;
-    // console.log(inputValue);
+   
     const salesCommission = document.getElementById("add-tax-price");
     const salesProfit = document.getElementById("profit");
     
@@ -13,12 +13,5 @@ window.addEventListener('load', () => {
 
 })
 
-  // salesCommission.addEventListener("input", () => {
-  // console.log("イベント発火");
-// })
-
-//   salesProfit.addEventListener("input", () => {
-//   console.log("イベント発火");
-// })
 
 })

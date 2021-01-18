@@ -21,34 +21,37 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Explanation can't be blank")
     end
-    it "category_idが空だと登録できない" do
-      @item.category_id = ""
+    it "category_idが1だと登録できない" do
+      @item.category_id = "1"
       @item.valid?
-      expect(@item.errors.full_messages).to include("Category can't be blank")
-    end
-    it "products_information_idが空だと登録できない" do
-      @item.products_information_id = ""
-      @item.valid?
-      expect(@item.errors.full_messages).to include("Products information can't be blank")
+      expect(@item.errors.full_messages).to include("Category must be other than 1")
     end
 
-    it "bo_shipping_charges_idが空だと登録できない" do
+    it "products_information_idが1だと登録できない" do
+      @item.products_information_id = "1"
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Products information must be other than 1")
+    end
+
+    it "bo_shipping_charges_idが1だと登録できない" do
       @item.bo_shipping_charges_id = ""
       @item.valid?
-      expect(@item.errors.full_messages).to include("Bo shipping charges can't be blank")
+      expect(@item.errors.full_messages).to include("Bo shipping charges is not a number")
     end
 
-    it "area_idが空だと登録できない" do
-      @item.area_id = ""
+    it "area_idが1だと登録できない" do
+      @item.area_id = "1"
       @item.valid?
-      expect(@item.errors.full_messages).to include("Area can't be blank")
+      expect(@item.errors.full_messages).to include("Area must be other than 1")
     end
     
-    it "estimated_shopping_date_idが空だと登録できない" do
-      @item.estimated_shopping_date_id = ""
+    it "estimated_shopping_date_idが1だと登録できない" do
+      @item.estimated_shopping_date_id = "1"
       @item.valid?
-      expect(@item.errors.full_messages).to include("Estimated shopping date can't be blank")
+      expect(@item.errors.full_messages).to include("Estimated shopping date must be other than 1")
     end
+
+    
 
     it "priceが空だと登録できない" do
       @item.price = ""

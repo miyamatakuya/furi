@@ -12,7 +12,6 @@ extend ActiveHash::Associations::ActiveRecordExtensions
   validates :image
   validates :name
   validates :explanation
-  validates :price
   validates :price,numericality:{greater_than_or_equal_to: 300,less_than_or_equal_to: 9999999}
  end
 

@@ -42,10 +42,10 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Products information must be other than 1")
     end
 
-    it "bo_shipping_charges_idが1だと登録できない" do
-      @item.bo_shipping_charges_id = 1
+    it "bo_shipping_charge_idが1だと登録できない" do
+      @item.bo_shipping_charge_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Bo shipping charges must be other than 1")
+      expect(@item.errors.full_messages).to include("Bo shipping charge must be other than 1")
     end
 
     it "area_idが1だと登録できない" do

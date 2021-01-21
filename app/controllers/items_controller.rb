@@ -47,7 +47,7 @@ end
 
   def move_to_index
     @item= Item.find(params[:id])
-    unless current_user.id == @item.user_id
+    unless user_signed_in? && current_user.id == @item.user_id
       redirect_to action: :index
     end
   end

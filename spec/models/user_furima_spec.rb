@@ -3,8 +3,12 @@ require 'rails_helper'
 RSpec.describe UserFurima, type: :model do
   describe 'フリマ情報の保存' do
     before do
-      @user_furima = FactoryBot.build(:user_furima)
+      @user = FactoryBot.create(:user)
+      @item = FactoryBot.create(:item)
+      @user_furima = FactoryBot.build(:user_furima, user_id: @user.id , item_id: @item.id)
+      sleep(1)
     end
+
     context '全ての値が入力できる場合' do
     it 'すべての値が正しく入力されていれば保存できること' do
       expect(@user_furima).to be_valid
@@ -27,6 +31,12 @@ RSpec.describe UserFurima, type: :model do
       @user_furima.valid?
       expect(@user_furima.errors.full_messages).to include("Area can't be blank")
     end
+    it '都道府県が1だと保存できないこと' do
+      @user_furima.area_id = 1
+      @user_furima.valid?
+      expect(@user_furima.errors.full_messages).to include("Area can't be blank")
+    end
+
     it '市区町村が空だと保存できないこと' do
       @user_furima.city = ""
       @user_furima.valid?
@@ -47,6 +57,13 @@ RSpec.describe UserFurima, type: :model do
       @user_furima.valid?
       expect(@user_furima.errors.full_messages).to include("Phone number is invalid. ")
     end
+
+    it '電話番号がハイフンが含まれていれば保存できないこと' do
+      @user_furima.phone_number = "111-11111-1111"
+      @user_furima.valid?
+      expect(@user_furima.errors.full_messages).to include("Phone number is invalid. ")
+    end
+    
     it 'item_idが空だと保存できないこと' do
       @user_furima.item_id = ""
       @user_furima.valid?

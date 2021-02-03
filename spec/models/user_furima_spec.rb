@@ -13,6 +13,11 @@ RSpec.describe UserFurima, type: :model do
     it 'すべての値が正しく入力されていれば保存できること' do
       expect(@user_furima).to be_valid
     end
+    it '建物が空でも購入できる場合' do
+      @user_furima.building_name = ""
+      @user_furima.valid?
+      expect(@user_furima).to be_valid
+    end
   end
 
   context '全ての値が入力できない場合' do
@@ -42,6 +47,8 @@ RSpec.describe UserFurima, type: :model do
       @user_furima.valid?
       expect(@user_furima.errors.full_messages).to include("City can't be blank")
     end
+    
+
     it '番地が空だと保存できないこと' do
       @user_furima.address = ""
       @user_furima.valid?
